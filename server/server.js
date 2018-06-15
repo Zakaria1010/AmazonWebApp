@@ -20,11 +20,14 @@ app.use(bodyParser.urlencoded({extended: false}));  // set it false in order to 
 app.use(morgan('dev'));
 
 
-app.get('/', (req, res, next) => {
-    res.json ({
-        name : "Zakaria"
-    })
-})
+const userRoutes = require('./routes/account');
+app.use('/api/accounts', userRoutes);
+
+// app.get('/', (req, res, next) => {
+//     res.json ({
+//         name : "Zakaria"
+//     })
+// })
 
 app.listen(config.port, (err) => {
     console.log("Magic happens on port " + config.port);   // sometimes 'nodemon not recognized' is path problem should add environmenet variable
